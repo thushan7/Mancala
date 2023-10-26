@@ -7,16 +7,16 @@ public class Board {
     private ArrayList<Store> stores;
 
     Board() {
-        pits = new ArrayList<Pit>(12);
-        stores = new ArrayList<Store>(2);
+        pits = new ArrayList<Pit>();
+        stores = new ArrayList<Store>();
     }
-
+//
     int captureStones(int stoppingPoint) {
         System.out.println("==captureStones==");
         int i = 0;
         return i;
     }
-
+//
     int distributeStones(int startingPoint) {
         System.out.println("==distributeStones==");
         int i = 0;
@@ -24,33 +24,46 @@ public class Board {
     }
 
     int getNumStones(int pitNum) {
-        System.out.println("==getNumStones==");
-        int i = 0;
-        return i;
+        return pits[pitNum].getStoneCount();
     }
 
     ArrayList<Pit> getPits() {
-        System.out.println("==getPits==");
-        ArrayList<Pit> a = new ArrayList<Pit>();
-        return a;
+        return pits;
     }
 
     ArrayList<Store> getStores() {
-        System.out.println("==getStores==");
-        ArrayList<Store> a = new ArrayList<Store>();
-        return a;
+        return stores;
     }
 
     void initializeBoard() {
-        System.out.println("==initializeBoard==");
+        setUpPits();
+        setUpStores();
+        for (Pit p : pits) {
+            for (int i=0; i<4; i++) {
+                p.addStone();
+            }
+        }
     }
 
     boolean isSideEmpty(int pitNum) {
-        System.out.println("==isSideEmpty==");
-        boolean b = false;
-        return b;
+        boolean empty = true;
+        if (pitNum>=1 && pitNum<=6) {
+            for (int i=0; i<6; i++) {
+                if (pits[i].getStoneCount() != 0) {
+                    empty = false;
+                }
+            }
+        }
+        else if (pitNum>=7 && pitNum<=12) {
+            for (int i=6; i<12; i++) {
+                if (pits[i].getStoneCount() != 0) {
+                    empty = false;
+                }
+            }
+        }
+        return empty;
     }
-
+//
     int moveStones(int startPit, Player player) {
         System.out.println("==moveStones==");
         int i = 0;
@@ -58,21 +71,37 @@ public class Board {
     }
 
     void registerPlayers(Player one, Player two) {
-        System.out.println("==registerPlayers==");
+        stores[0].setOwner(one);
+        one.setStore(stores[0]);
+        stores[1].setOwner(two);
+        two.setStore(stores[1]);
     }
 
     void resetBoard() {
-        System.out.println("==resetBoard==");
+        for (Store s : stores) {
+            s.emptyStore();
+        }
+        for (Pit p : pits) {
+            for (int i=0; i<4; i++) {
+                p.addStone();
+            }
+        }
     }
 
     void setUpPits() {
-        System.out.println("==setUpPits==");
+        for (int i=0; i<12; i++) {
+             Pit p = new Pit();
+             pits.add(p);
+        }
     }
 
     void setUpStores() {
-        System.out.println("==setUpStores==");
+        for (int i=0; i<2; i++) {
+             Store s = new Store();
+             stores.add(s);
+         }
     }
-
+//
     public String toString() {
         System.out.println("==toString==");
         String s = "0";

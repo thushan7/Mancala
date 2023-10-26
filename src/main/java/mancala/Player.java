@@ -16,34 +16,27 @@ public class Player {
     }
 
     String getName() {
-        System.out.println("==getName==");
-        String s = "0";
-        return s;
+        return name;
     }
 
     Store getStore() {
-        System.out.println("==getStore==");
-        Store s = new Store();
-        return s;
+        return store;
     }
 
     int getStoreCount() {
-        System.out.println("==getStoreCount==");
-        int i = 0;
-        return i;
+        return storeCount;
     }
 
     void setName(String n) {
-        System.out.println("==setName==");
+        name = n;
     }
 
     void setStore(Store s) {
-        System.out.println("==setStore==");
+        store = s;
     }
 
     public String toString() {
-        System.out.println("==toString==");
-        String s = "0";
+        String s = getName() + "'s store currently has " + getStoreCount() + " stones";
         return s;
     }
 }

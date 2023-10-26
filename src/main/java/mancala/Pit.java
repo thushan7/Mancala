@@ -8,24 +8,21 @@ public class Pit {
     }
 
     void addStone() {
-        System.out.println("==addStone==");
+        numStones++;
     }
 
     int getStoneCount() {
-        System.out.println("==getStoneCount==");
-        int i = 0;
-        return i;
+        return numStones;
     }
 
     int removeStones() {
-        System.out.println("==removeStones==");
-        int i = 0;
+        int i = numStones;
+        numStones = 0;
         return i;
     }
 
     public String toString() {
-        System.out.println("==toString==");
-        String s = "0";
+        String s = getStoneCount() + " stones";
         return s;
     }
 }

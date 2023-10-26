@@ -10,33 +10,29 @@ public class Store {
     }
 
     void addStones(int amount) {
-        System.out.println("==addStones==");
+        numStones += amount;
     }
 
     int emptyStore() {
-        System.out.println("==emptyStore==");
-        int i = 0;
+        int i = numStones;
+        numStones = 0;
         return i;
     }
 
     Player getOwner() {
-        System.out.println("==getOwner==");
-        Player p = new Player();
-        return p;
+        return owner;
     }
 
     int getTotalStones() {
-        System.out.println("==getTotalStones==");
-        int i = 0;
-        return i;
+        return numStones;
     }
 
     void setOwner(Player player) {
-        System.out.println("==setOwner==");
+        owner = player;
     }
 
     public String toString() {
-        System.out.println("==toString==");
-        return "0";
+        String s = owner.getName() + "'s store has " + getTotalStones() + " stones";
+        return s;
     }
 }
