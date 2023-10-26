@@ -10,17 +10,44 @@ public class Board {
         pits = new ArrayList<Pit>();
         stores = new ArrayList<Store>();
     }
-//
+
     int captureStones(int stoppingPoint) {
-        System.out.println("==captureStones==");
-        int i = 0;
-        return i;
+        int stones = pits[13-stoppingPoint].removeStones();
+        if (stoppingPoint>=1 && stoppingPoint<=6) {
+            stores[0].addStones(stones);
+        }
+        else if (stoppingPoint>=7 && stoppingPoint<=12) {
+            stores[1].addStones(stones);
+        }
+        return stones;
     }
-//
+
     int distributeStones(int startingPoint) {
-        System.out.println("==distributeStones==");
-        int i = 0;
-        return i;
+        int stones = pits[startingPoint].removeStones();
+        int pit = startingPoint;
+        for (int i=0; i<stones; i++) {
+            if (pit==6 && startingPoint>=1 && startingPoint<=6) {
+                stores[0].addStones(1);
+                if (stones-i>1) {
+                    pit++;
+                    pits[pit].addStone();
+                    i++;
+                }
+            }
+            else if (pit==12 && startingPoint>=7 && startingPoint<=12) {
+                stores[1].addStones(1);
+                if (stones-i>1) {
+                    pit++;
+                    pits[pit].addStone();
+                    i++;
+                }
+            }
+            else {
+                pit++;
+                pits[pit].addStone();
+            }
+        }
+        return stones;
     }
 
     int getNumStones(int pitNum) {
@@ -65,9 +92,6 @@ public class Board {
     }
 //
     int moveStones(int startPit, Player player) {
-        System.out.println("==moveStones==");
-        int i = 0;
-        return i;
     }
 
     void registerPlayers(Player one, Player two) {
@@ -103,8 +127,5 @@ public class Board {
     }
 //
     public String toString() {
-        System.out.println("==toString==");
-        String s = "0";
-        return s;
     }
 }
