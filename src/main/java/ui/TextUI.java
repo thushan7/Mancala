@@ -9,6 +9,9 @@ public class TextUI {
     private Scanner input;
 
     public static void main(String[] args) {
-        System.out.println("==main method==");
+        input = new Scanner(System.in);
+        game = new MancalaGame();
+
+        game.startNewGame();
     }
 }

@@ -12,47 +12,44 @@ public class Board {
     }
 
     int captureStones(int stoppingPoint) {
-        int stones = pits[12-stoppingPoint].removeStones();
+        int stones = pits.get(12-stoppingPoint).removeStones();
         if (stoppingPoint>=1 && stoppingPoint<=6) {
-            stores[0].addStones(stones+1);
+            stores.get(0).addStones(stones+1);
+        } else if (stoppingPoint>=7 && stoppingPoint<=12) {
+            stores.get(1).addStones(stones+1);
         }
-        else if (stoppingPoint>=7 && stoppingPoint<=12) {
-            stores[1].addStones(stones+1);
-        }
-        pits[stoppingPoint-1].removeStones();
+        pits.get(stoppingPoint-1).removeStones();
         return stones;
     }
 
     int distributeStones(int startingPoint) {
-        int stones = pits[startingPoint-1].removeStones();
+        int stones = pits.get(startingPoint-1).removeStones();
         int pit = startingPoint-1;
         for (int i=0; i<stones; i++) {
             if (pit==6 && startingPoint>=1 && startingPoint<=6) {
-                stores[0].addStones(1);
+                stores.get(0).addStones(1);
                 if (stones-i>1) {
                     pit++;
-                    pits[pit].addStone();
+                    pits.get(pit).addStone();
                     i++;
                 }
-            }
-            else if (pit==12 && startingPoint>=7 && startingPoint<=12) {
-                stores[1].addStones(1);
+            } else if (pit==12 && startingPoint>=7 && startingPoint<=12) {
+                stores.get(1).addStones(1);
                 if (stones-i>1) {
                     pit++;
-                    pits[pit].addStone();
+                    pits.get(pit).addStone();
                     i++;
                 }
-            }
-            else {
+            } else {
                 pit++;
-                pits[pit].addStone();
+                pits.get(pit).addStone();
             }
         }
         return stones;
     }
 
     int getNumStones(int pitNum) {
-        return pits[pitNum-1].getStoneCount();
+        return pits.get(pitNum-1).getStoneCount();
     }
 
     ArrayList<Pit> getPits() {
@@ -77,14 +74,13 @@ public class Board {
         boolean empty = true;
         if (pitNum>=1 && pitNum<=6) {
             for (int i=0; i<6; i++) {
-                if (pits[i].getStoneCount() != 0) {
+                if (pits.get(i).getStoneCount() != 0) {
                     empty = false;
                 }
             }
-        }
-        else if (pitNum>=7 && pitNum<=12) {
+        } else if (pitNum>=7 && pitNum<=12) {
             for (int i=6; i<12; i++) {
-                if (pits[i].getStoneCount() != 0) {
+                if (pits.get(i).getStoneCount() != 0) {
                     empty = false;
                 }
             }
@@ -99,10 +95,10 @@ public class Board {
     }
 
     void registerPlayers(Player one, Player two) {
-        stores[0].setOwner(one);
-        one.setStore(stores[0]);
-        stores[1].setOwner(two);
-        two.setStore(stores[1]);
+        stores.get(0).setOwner(one);
+        one.setStore(stores.get(0));
+        stores.get(1).setOwner(two);
+        two.setStore(stores.get(1));
     }
 
     void resetBoard() {
@@ -132,21 +128,21 @@ public class Board {
 
     public String toString() {
         String s = "";
-        s += "                         12:" + pits[11].getStoneCount() +
-                                    "  11:" + pits[10].getStoneCount() +
-                                    "  10:" + pits[9].getStoneCount() +
-                                    "   9:" + pits[8].getStoneCount() +
-                                    "   8:" + pits[7].getStoneCount() +
-                                    "   7:" + pits[6].getStoneCount() + "\n";
-        s += store[1].owner.getName() + "'s Store: " + store[1].getStoreCount() + "    " +
-             "                                        " +
-             "    " + store[0].getStoreCount() + " :" + store[0].owner.getName() + "'s Store\n";
-        s += "                          1:" + pits[0].getStoneCount() +
-                                    "   2:" + pits[1].getStoneCount() +
-                                    "   3:" + pits[2].getStoneCount() +
-                                    "   4:" + pits[3].getStoneCount() +
-                                    "   5:" + pits[4].getStoneCount() +
-                                    "   6:" + pits[5].getStoneCount() + "\n";
+        s += "                         12:" + pits.get(11).getStoneCount()
+                                    + "  11:" + pits.get(10).getStoneCount()
+                                    + "  10:" + pits.get(9).getStoneCount()
+                                    + "   9:" + pits.get(8).getStoneCount()
+                                    + "   8:" + pits.get(7).getStoneCount()
+                                    + "   7:" + pits.get(6).getStoneCount() + "\n";
+        s += stores.get(1).getOwner().getName() + "'s Store: " + stores.get(1).getTotalStones() + "    "
+             + "                                        "
+             + "    " + stores.get(0).getTotalStones() + " :" + stores.get(0).getOwner().getName() + "'s Store\n";
+        s += "                          1:" + pits.get(0).getStoneCount()
+                                    + "   2:" + pits.get(1).getStoneCount()
+                                    + "   3:" + pits.get(2).getStoneCount()
+                                    + "   4:" + pits.get(3).getStoneCount()
+                                    + "   5:" + pits.get(4).getStoneCount()
+                                    + "   6:" + pits.get(5).getStoneCount() + "\n";
         return s;
 
     }
