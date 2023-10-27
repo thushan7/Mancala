@@ -24,7 +24,7 @@ public class Player {
     }
 
     int getStoreCount() {
-        return storeCount;
+        return store.getTotalStones();
     }
 
     void setName(String n) {
