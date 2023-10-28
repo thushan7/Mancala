@@ -26,22 +26,26 @@ public class Board {
         int stones = pits.get(startingPoint-1).removeStones();
         int pit = startingPoint-1;
         for (int i=0; i<stones; i++) {
-            if (pit==6 && startingPoint>=1 && startingPoint<=6) {
+            if (pit==5 && startingPoint>=1 && startingPoint<=6) {
                 stores.get(0).addStones(1);
                 if (stones-i>1) {
-                    pit++;
+                    pit = 6;
                     pits.get(pit).addStone();
                     i++;
                 }
-            } else if (pit==12 && startingPoint>=7 && startingPoint<=12) {
+            } else if (pit==11 && startingPoint>=7 && startingPoint<=12) {
                 stores.get(1).addStones(1);
                 if (stones-i>1) {
-                    pit++;
+                    pit = 0;
                     pits.get(pit).addStone();
                     i++;
                 }
             } else {
-                pit++;
+                if (pit==12) {
+                    pit = 0;
+                } else {
+                    pit++;
+                }
                 pits.get(pit).addStone();
             }
         }
@@ -101,11 +105,12 @@ public class Board {
         two.setStore(stores.get(1));
     }
 
-    void resetBoard() {
+    public void resetBoard() {
         for (Store s : stores) {
             s.emptyStore();
         }
         for (Pit p : pits) {
+            p.removeStones();
             for (int i=0; i<4; i++) {
                 p.addStone();
             }

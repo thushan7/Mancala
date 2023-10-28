@@ -10,12 +10,12 @@ public class Player {
     }
 
     Player(String n) {
-        this.name = name;
+        this.name = n;
         store = null;
         storeCount = 0;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 

@@ -41,6 +41,17 @@ public class MancalaGame {
     }
 
     public Player getWinner() {
+        int add;
+        if (getNumStones(1)==0 && getNumStones(2)==0 && getNumStones(3)==0
+            && getNumStones(4)==0 && getNumStones(5)==0 && getNumStones(6)==0) {
+            add = getNumStones(7) + getNumStones(8) + getNumStones(9)
+                  + getNumStones(10) + getNumStones(11) + getNumStones(12);
+            players.get(1).getStore().addStones(add);
+        } else {
+            add = getNumStones(1) + getNumStones(2) + getNumStones(3)
+                  + getNumStones(4) + getNumStones(5) + getNumStones(6);
+            players.get(0).getStore().addStones(add);
+        }
         if (getStoreCount(players.get(0)) > getStoreCount(players.get(1))) {
             return players.get(0);
         } else if (getStoreCount(players.get(1)) > getStoreCount(players.get(0))) {
@@ -63,13 +74,19 @@ public class MancalaGame {
 
     public int move(int startPit) {
         int stopPit = startPit + getNumStones(startPit);
+        if (stopPit>12) {
+            stopPit -= 13;
+        } else if (stopPit>6) {
+            stopPit -= 7;
+        }
         int newStones = board.moveStones(startPit, currentPlayer);
-        stopPit -= newStones;
-        if (getNumStones(stopPit)==1) {
-            if (currentPlayer==players.get(0) && stopPit>=1 && stopPit<=6) {
-                board.captureStones(stopPit);
-            } else if (currentPlayer==players.get(1) && stopPit>=7 && stopPit<=12) {
-                board.captureStones(stopPit);
+        if (stopPit!=0) {
+            if (getNumStones(stopPit)==1) {
+                if (currentPlayer==players.get(0) && stopPit>=1 && stopPit<=6) {
+                    board.captureStones(stopPit);
+                } else if (currentPlayer==players.get(1) && stopPit>=7 && stopPit<=12) {
+                    board.captureStones(stopPit);
+                }
             }
         }
         if (currentPlayer==players.get(0)) {
@@ -106,7 +123,7 @@ public class MancalaGame {
         Player p2 = new Player(name2);
         setPlayers(p1, p2);
         board.registerPlayers(p1, p2);
-        setCurrentPlayer(p1);
+        setCurrentPlayer(p2);
     }
 
     public String toString() {
