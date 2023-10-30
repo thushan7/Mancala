@@ -6,12 +6,15 @@ public class Board {
     private ArrayList<Pit> pits;
     private ArrayList<Store> stores;
 
-    Board() {
+    public Board() {
         pits = new ArrayList<Pit>();
         stores = new ArrayList<Store>();
     }
 
-    int captureStones(int stoppingPoint) {
+    public int captureStones(int stoppingPoint) throws PitNotFoundException {
+        if (stoppingPoint<1 || stoppingPoint>12) {
+            throw new PitNotFoundException();
+        }
         int stones = pits.get(12-stoppingPoint).removeStones();
         if (stoppingPoint>=1 && stoppingPoint<=6) {
             stores.get(0).addStones(stones+1);
@@ -22,7 +25,10 @@ public class Board {
         return stones;
     }
 
-    int distributeStones(int startingPoint) {
+    public int distributeStones(int startingPoint) throws PitNotFoundException {
+        if (startingPoint<1 || startingPoint>12) {
+            throw new PitNotFoundException();
+        }
         int stones = pits.get(startingPoint-1).removeStones();
         int pit = startingPoint-1;
         for (int i=0; i<stones; i++) {
@@ -52,7 +58,10 @@ public class Board {
         return stones;
     }
 
-    int getNumStones(int pitNum) {
+    public int getNumStones(int pitNum) throws PitNotFoundException {
+        if (pitNum<1 || pitNum>12) {
+            throw new PitNotFoundException();
+        }
         return pits.get(pitNum-1).getStoneCount();
     }
 
@@ -74,7 +83,10 @@ public class Board {
         }
     }
 
-    boolean isSideEmpty(int pitNum) {
+    public boolean isSideEmpty(int pitNum) throws PitNotFoundException {
+        if (pitNum<1 || pitNum>12) {
+            throw new PitNotFoundException();
+        }
         boolean empty = true;
         if (pitNum>=1 && pitNum<=6) {
             for (int i=0; i<6; i++) {
@@ -92,13 +104,21 @@ public class Board {
         return empty;
     }
 
-    int moveStones(int startPit, Player player) {
+    int moveStones(int startPit, Player player) throws InvalidMoveException {
+        if ((player.getStore() == stores.get(0) && (startPit>=7 && startPit<=12))
+          || (player.getStore() == stores.get(1) && (startPit>=1 && startPit<=6))) {
+            throw new InvalidMoveException();
+        }
         int startingStoreCount = player.getStoreCount();
-        int stones = distributeStones(startPit);
+        try {
+            int stones = distributeStones(startPit);
+        } catch (PitNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
         return player.getStoreCount() - startingStoreCount;
     }
 
-    void registerPlayers(Player one, Player two) {
+    public void registerPlayers(Player one, Player two) {
         stores.get(0).setOwner(one);
         one.setStore(stores.get(0));
         stores.get(1).setOwner(two);

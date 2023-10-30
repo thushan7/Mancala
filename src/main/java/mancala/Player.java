@@ -5,7 +5,7 @@ public class Player {
     private Store store;
     private int storeCount;
 
-    Player() {
+    public Player() {
         this("noname");
     }
 
