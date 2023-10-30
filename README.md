@@ -41,12 +41,21 @@ tsubasko@uoguelph.ca
 
 ## Development History
 
+* 0.11
+    * Updated development history on README
+	* See commit "updated README"
+* 0.10
+    * Fixed formatting for code review
+        * See commit "updated code review"
+* 0.9
+    * Fixed formatting for README
+	* See commit "updated README.md"
 * 0.8
     * Final last-minute changes
 	* See commit "minor changes"
 * 0.7
     * Finished exception handling and all other assignment requirements
-	* See commit "finished exceptions and rest of assignment"
+	* See commit "finished exception handling and rest of assignment"
 * 0.6
     * Finished main method and all functionality and testing of game
 	* See commit "finished main, game works, now need to handle exceptions"
