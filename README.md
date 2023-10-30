@@ -41,6 +41,9 @@ tsubasko@uoguelph.ca
 
 ##Development History
 
+*0.8
+    *Final last-minute changes
+	*See commit "minor changes"
 *0.7
     *Finished exception handling and all other assignment requirements
 	*See commit "finished exceptions and rest of assignment"
