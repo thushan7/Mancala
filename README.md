@@ -39,32 +39,32 @@ All functionality is complete. Based on assignment requirements, no errors are p
 Thushan Subaskody (1219251)
 tsubasko@uoguelph.ca
 
-##Development History
+## Development History
 
-*0.8
-    *Final last-minute changes
-	*See commit "minor changes"
-*0.7
-    *Finished exception handling and all other assignment requirements
-	*See commit "finished exceptions and rest of assignment"
-*0.6
-    *Finished main method and all functionality and testing of game
-	*See commit "finished main, game works, now need to handle exceptions"
-*0.5
-    *Finished required methods and started main method
-	*See commit "finished methods, started main"
-*0.4
-    *Worked on required methods
-	*See commit "worked on even more methods"
-*0.3
-    *Worked on required methods
-	*See commit "worked on more methods"
-*0.2
-    *Worked on required methods
-	*See commit "worked on methods"
-*0.1
-    *Created method stubs for all required methods
-	*See commit "stubbed all methods"
+* 0.8
+    * Final last-minute changes
+	* See commit "minor changes"
+* 0.7
+    * Finished exception handling and all other assignment requirements
+	* See commit "finished exceptions and rest of assignment"
+* 0.6
+    * Finished main method and all functionality and testing of game
+	* See commit "finished main, game works, now need to handle exceptions"
+* 0.5
+    * Finished required methods and started main method
+	* See commit "finished methods, started main"
+* 0.4
+    * Worked on required methods
+	* See commit "worked on even more methods"
+* 0.3
+    * Worked on required methods
+	* See commit "worked on more methods"
+* 0.2
+    * Worked on required methods
+	* See commit "worked on methods"
+* 0.1
+    * Created method stubs for all required methods
+	* See commit "stubbed all methods"
 
 ### Differences between AI Solution and My Solution
 
